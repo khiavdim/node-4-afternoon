@@ -8,9 +8,9 @@ const cart = require("./controllers/cartController");
 const search = require("./controllers/searchController");
 
 const app = express();
-const { SERVER_PORT, SESSION_SECRET } = process.env;
+let { SERVER_PORT, SESSION_SECRET } = process.env;
 
-//Top Level Middleware
+//Middleware
 app.use(express.json());
 app.use(
   session({
@@ -20,7 +20,7 @@ app.use(
   })
 );
 app.use(checkForSession);
-app.use(express.static(`${__dirname}./../build`));
+app.use(express.static(`${__dirname}/../build`));
 
 //End Points
 app.get("/api/swag", swag.read);
